@@ -5,10 +5,11 @@ import prisma from '../../../../lib/prisma';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 console.log(req.method)
   // if (req.method === 'PUT') {
+    try {
     const { id, firstName, lastName, email, birthDate, phoneNumber, situationId, disabled, photo } = req.body;
 
 
-    try {
+
       let updatedEmployeeData = {
         firstName,
         lastName,
