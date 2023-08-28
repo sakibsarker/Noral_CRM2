@@ -25,12 +25,12 @@ type Props = {
   apiRoute: String[];
 };
 
-
 const updateEmployee = async (item: any, updatedData: any) => {
   try {
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employees/updateEmployee`;
+    
+    const apiUrl =`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employees/updateEmployee`;
     const response = await fetch(apiUrl, {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -174,7 +174,6 @@ function EmployeeTable(props: Props) {
       itemsPerPage={10}
       columnSorter
       pagination
-     
       scopedColumns={{
         avatar: (item: any) => {
           return (
