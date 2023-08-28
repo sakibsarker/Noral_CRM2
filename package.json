@@ -1,22 +1,13 @@
 {
   "name": "@coreui/coreui-pro-next-js-admin-template",
   "version": "1.0.0",
-  "description": "Nolara",
-  "bugs": {
-    "url": "https://github.com/coreui/coreui-pro-next-js-admin-template/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:coreui/coreui-pro-next-js-admin-template.git"
-  },
-  "proxy": "https://api.cloudflare.com",
-  "license": "SEE LICENSE IN LICENSE",
-  "author": "The CoreUI Team (https://github.com/orgs/coreui/people)",
+  "private":true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build && next export",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@coreui/coreui-pro": "^4.4.3",

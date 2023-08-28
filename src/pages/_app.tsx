@@ -20,6 +20,7 @@ type AppPropsWithLayout = AppProps & {
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page)
   return (
+    <>
     <Provider store={store}>
       <Head>
         <title>Nolara ERP</title>
@@ -27,5 +28,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       </Head>
       {getLayout(<Component {...pageProps} />)}
     </Provider>
+    </>
   )
 }
