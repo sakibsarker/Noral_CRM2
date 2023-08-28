@@ -27,7 +27,7 @@ type Props = {
   apiRoute: String[];
 };
 
-const apiEmployee = "../api/employees/addEmployee";
+const apiEmployee = "/api/employees/addEmployee";
 
 
 const FormInsertEmployee = (props: Props) => {

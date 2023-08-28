@@ -25,8 +25,8 @@ type Props = {
   dropdownValues: any[];
 };
 
-const apiAdress = '../api/employees/addSalary';
-const apiGetSalaryData = '../api/employees/getSalaryData';
+const apiAdress = '/api/employees/addSalary';
+const apiGetSalaryData = '/api/employees/getSalaryData';
 
 const FormInsertEmployeeData: React.FC<Props> = (props: Props) => {
   const { employeeId, dropdownValues = [] } = props;

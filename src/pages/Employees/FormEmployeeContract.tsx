@@ -21,7 +21,7 @@ type Props = {
   employeeId: number;
   dropdownValues: any[];
 };
-const ContractValidation = "../api/employees/ContractValidation";
+const ContractValidation = "/api/employees/ContractValidation";
 
 const FormInsertEmployeeData = (props: Props) => {
   const { employeeId } = props;

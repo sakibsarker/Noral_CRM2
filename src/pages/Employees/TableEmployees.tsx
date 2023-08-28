@@ -27,7 +27,7 @@ type Props = {
 
 const updateEmployee = async (item: any, updatedData: any) => {
   try {
-    const apiUrl = '../api/employees/updateEmployee';
+    const apiUrl = '/api/employees/updateEmployee';
     const response = await fetch(apiUrl, {
       method: 'PUT',
       headers: {
