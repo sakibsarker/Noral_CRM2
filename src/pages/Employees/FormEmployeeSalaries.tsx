@@ -60,7 +60,7 @@ const FormInsertEmployeeData: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     getSalaryData(employeeId, selectedYear);
-  }, [employeeId, selectedYear]);
+  }, [employeeId, selectedYear,getSalaryData]);
 
   useEffect(() => {
     if (selectedYear && !yearsSalaries[selectedYear]) {
@@ -68,7 +68,7 @@ const FormInsertEmployeeData: React.FC<Props> = (props: Props) => {
     } else if (selectedYear) {
       setMonthSalaries(yearsSalaries[selectedYear]);
     }
-  }, [selectedYear]);
+  }, [selectedYear,yearsSalaries,netSalariesByYear,updateMonthSalaries]);
 
   const getSalaryData = async (employeeId: number, year: number) => {
     try {
