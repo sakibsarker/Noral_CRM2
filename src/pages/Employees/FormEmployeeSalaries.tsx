@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useCallback } from 'react';
 import {
   CCard,
   CCardBody,
@@ -70,7 +70,7 @@ const FormInsertEmployeeData: React.FC<Props> = (props: Props) => {
     }
   }, [selectedYear,yearsSalaries,netSalariesByYear,updateMonthSalaries]);
 
-  const getSalaryData = async (employeeId: number, year: number) => {
+  const getSalaryData =useCallback(async (employeeId: number, year: number)=> {
     try {
       const response = await fetch(`${apiGetSalaryData}?employeeId=${employeeId}&year=${year}`);
       const salaryData = await response.json();
@@ -89,7 +89,7 @@ const FormInsertEmployeeData: React.FC<Props> = (props: Props) => {
     } catch (error) {
       console.error('Error fetching salary data:', error);
     }
-  };
+  },[]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -148,7 +148,7 @@ const FormInsertEmployeeData: React.FC<Props> = (props: Props) => {
     }
   };
 
-  const updateMonthSalaries = (year: number, newNetSalary: number) => {
+  const updateMonthSalaries =useCallback((year: number, newNetSalary: number) => {
     if (yearsSalaries[year]) {
       const newSalaries = yearsSalaries[year].map((salary) => {
         return salary === 0 ? newNetSalary : salary;
@@ -160,7 +160,19 @@ const FormInsertEmployeeData: React.FC<Props> = (props: Props) => {
     } else {
       setMonthSalaries(Array(12).fill(newNetSalary));
     }
-  };
+  },[yearsSalaries]);
+
+  useEffect(() => {
+    getSalaryData(employeeId, selectedYear);
+  }, [employeeId, selectedYear, getSalaryData]); 
+
+  useEffect(() => {
+    if (selectedYear && !yearsSalaries[selectedYear]) {
+      updateMonthSalaries(selectedYear, netSalariesByYear[selectedYear] || 0);
+    } else if (selectedYear) {
+      setMonthSalaries(yearsSalaries[selectedYear]);
+    }
+  }, [selectedYear, yearsSalaries, netSalariesByYear, updateMonthSalaries]);
 
   const monthNames = [
     'Jan',
