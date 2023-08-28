@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../../../lib/prisma';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+console.log(req.method)
   if (req.method === 'PUT') {
     const { id, firstName, lastName, email, birthDate, phoneNumber, situationId, disabled, photo } = req.body;
 
