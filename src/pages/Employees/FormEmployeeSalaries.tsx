@@ -40,6 +40,41 @@ const FormInsertEmployeeData: React.FC<Props> = (props: Props) => {
   const [showAlert, setShowAlert] = useState(false);
   const [showValidation, setShowValidation] = useState(true);
 
+  const getSalaryData =useCallback(async (employeeId: number, year: number)=> {
+    try {
+      const response = await fetch(`${apiGetSalaryData}?employeeId=${employeeId}&year=${year}`);
+      const salaryData = await response.json();
+      if (salaryData && Array.isArray(salaryData) && salaryData.length > 0) {
+        const monthSalaries = salaryData.map((salary: any) => salary.salaryNet);
+        setMonthSalaries(monthSalaries);
+        setYearsSalaries({
+          ...yearsSalaries,
+          [year]: monthSalaries,
+        });
+        setNetSalariesByYear({
+          ...netSalariesByYear,
+          [year]: monthSalaries.reduce((sum: number, salary: number) => sum + salary, 0) / 12,
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching salary data:', error);
+    }
+  },[]);
+
+  const updateMonthSalaries =useCallback((year: number, newNetSalary: number) => {
+    if (yearsSalaries[year]) {
+      const newSalaries = yearsSalaries[year].map((salary) => {
+        return salary === 0 ? newNetSalary : salary;
+      });
+      setYearsSalaries({
+        ...yearsSalaries,
+        [year]: newSalaries,
+      });
+    } else {
+      setMonthSalaries(Array(12).fill(newNetSalary));
+    }
+  },[yearsSalaries,netSalariesByYear]);
+
   const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedYearValue = Number(e.target.value);
     setSelectedYear(selectedYearValue);
@@ -70,26 +105,7 @@ const FormInsertEmployeeData: React.FC<Props> = (props: Props) => {
     }
   }, [selectedYear,yearsSalaries,netSalariesByYear,updateMonthSalaries]);
 
-  const getSalaryData =useCallback(async (employeeId: number, year: number)=> {
-    try {
-      const response = await fetch(`${apiGetSalaryData}?employeeId=${employeeId}&year=${year}`);
-      const salaryData = await response.json();
-      if (salaryData && Array.isArray(salaryData) && salaryData.length > 0) {
-        const monthSalaries = salaryData.map((salary: any) => salary.salaryNet);
-        setMonthSalaries(monthSalaries);
-        setYearsSalaries({
-          ...yearsSalaries,
-          [year]: monthSalaries,
-        });
-        setNetSalariesByYear({
-          ...netSalariesByYear,
-          [year]: monthSalaries.reduce((sum: number, salary: number) => sum + salary, 0) / 12,
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching salary data:', error);
-    }
-  },[]);
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -148,19 +164,7 @@ const FormInsertEmployeeData: React.FC<Props> = (props: Props) => {
     }
   };
 
-  const updateMonthSalaries =useCallback((year: number, newNetSalary: number) => {
-    if (yearsSalaries[year]) {
-      const newSalaries = yearsSalaries[year].map((salary) => {
-        return salary === 0 ? newNetSalary : salary;
-      });
-      setYearsSalaries({
-        ...yearsSalaries,
-        [year]: newSalaries,
-      });
-    } else {
-      setMonthSalaries(Array(12).fill(newNetSalary));
-    }
-  },[yearsSalaries]);
+
 
   useEffect(() => {
     getSalaryData(employeeId, selectedYear);
