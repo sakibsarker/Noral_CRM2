@@ -173,9 +173,7 @@ function EmployeeTable(props: Props) {
       itemsPerPage={10}
       columnSorter
       pagination
-      tableProps={{
-        hover: true,
-      }}
+     
       scopedColumns={{
         avatar: (item: any) => {
           return (
