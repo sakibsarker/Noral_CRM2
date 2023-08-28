@@ -21,7 +21,7 @@ type Props = {
   employeeId: number;
   dropdownValues: any[];
 };
-const ContractValidation =`/api/employees/ContractValidation`;
+const ContractValidation =`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employees/ContractValidation`;
 
 const FormInsertEmployeeData = (props: Props) => {
   const { employeeId } = props;

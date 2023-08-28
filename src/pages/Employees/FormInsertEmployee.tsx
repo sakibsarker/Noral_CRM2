@@ -27,7 +27,7 @@ type Props = {
   apiRoute: String[];
 };
 
-const apiEmployee = "/api/employees/addEmployee";
+const apiEmployee = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employees/addEmployee`;
 
 
 const FormInsertEmployee = (props: Props) => {
