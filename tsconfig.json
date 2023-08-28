@@ -1,0 +1,60 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es6",  
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/public/*": ["public/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules", 
+    ".vscode",
+    "src/utils/gantt/",
+    "src/ignore/Bi2/",
+    "src/ignore/Charges/",
+    "src/ignore/d3",
+    "src/ignore/DataAnalysis",
+    "src/ignore/Employees",
+    "src/ignore/homurlsWours",
+    "src/ignore/Products",
+    "src/ignore/components/asteroids",
+    "src/ignore/components/forms",
+    "src/ignore/components/gantt",
+    "src/ignore/components/products",
+    "src/ignore/components/productsTemplate",
+    "src/pages/plugins/chartsEmployees",
+    "src/plugins/charts",
+    "src/plugins/chartsEmployees"
+  ]
+}

@@ -1,0 +1,99 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Employee {
+  id          Int      @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  birthDate   DateTime @default(now())
+  idAdress    Int      @default(0)
+  email       String?  @unique
+  phoneNumber Int      @default(0)
+  situationId Int      @default(0)
+  disabled    Boolean  @default(false)
+  photo       String   @default("default.jpg")
+}
+
+model Salaries {
+  id         Int    @id @default(autoincrement())
+  employeeId Int    @default(1)
+  year       Int    @default(2023)
+  month      Int    @default(5)
+  currency   String @default("Euro")
+  salaryNet  Int    @default(0)
+  salaryBrut Int    @default(0)
+}
+
+model Contracts {
+  id             Int       @id @default(autoincrement())
+  employeeId     Int       @default(1)
+  idCompany      Int       @default(1)
+  contractTypeId Int       @default(1)
+  jobTypeId      Int       @default(1)
+  jobTitleId     Int       @default(1)
+  description    String    @default("Pas de description")
+  startDate      DateTime  @default(now())
+  endDate        DateTime?
+}
+
+model DropdownValues {
+  id            Int    @id @default(autoincrement())
+  idCategory    Int    @default(0)
+  labelCategory String @default("")
+  idListed      Int    @default(0)
+  icon          String @default("icon.jpg")
+  label         String @default("noLabel")
+}
+
+
