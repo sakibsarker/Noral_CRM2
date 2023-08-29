@@ -1,3 +1,6 @@
+
+![screencapture-noral-crm-2-vercel-app-Employees-2023-08-29-02_30_15](https://github.com/sakibsarker/Noral_CRM2/assets/95316668/1476b3d3-5307-4c06-b8c7-5e4797c47983)
+
 ## Getting Started
 
 First, run the development server:
