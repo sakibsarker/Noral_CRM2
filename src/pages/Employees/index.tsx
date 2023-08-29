@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, { useState } from "react";
 import { GetStaticProps } from "next";
 import prisma from "../../../lib/prisma";
@@ -17,6 +17,9 @@ import { EmployeeProps } from "@/components/Employees";
 import WidgetsBrand from '@/pages/components/widgets/WidgetsBrand'
 import WidgetsDropdown from '@/pages/components/widgets/WidgetsDropdown'
 
+type WithLayout = React.FC<Props> & {
+  getLayout?: (page: React.ReactNode) => React.ReactNode;
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const [feed, dropdownValues, salaries] = await Promise.all([
@@ -42,17 +45,17 @@ type Props = {
   salaries: any[];
 };
 
-const getMonthlySalarySums = (salaries) => {
+const getMonthlySalarySums = (salaries:any) => {
   const monthlySums = Array(12).fill(0);
   if (salaries) {
-    salaries.forEach((salary) => {
+    salaries.forEach((salary:any) => {
       monthlySums[salary.month - 1] += salary.salaryNet;
     });
   }
   return monthlySums;
 };
 
-const SmartTable: React.FC<Props> = (props) => {
+const SmartTable:WithLayout= (props) => {
   const [showEmployees, setShowEmployees] = useState(true);
   const [showAddEmployees, setShowAddEmployees] = useState(false);
   const [showDetail, setDetail] = useState(true);
@@ -105,7 +108,7 @@ const SmartTable: React.FC<Props> = (props) => {
   );
 };
 
-SmartTable.getLayout = function getLayout(page) {
+SmartTable.getLayout = function getLayout(page:any) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 

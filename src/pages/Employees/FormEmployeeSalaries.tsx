@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, { useState, useEffect,useCallback } from 'react';
 import {
   CCard,
@@ -19,10 +19,13 @@ import {
 } from "@coreui/react-pro";
 import CIcon from '@coreui/icons-react';
 import { cilCheckCircle } from '@coreui/icons';
+import { EmployeeProps } from './TableEmployees';
+
 
 type Props = {
   employeeId: number;
   dropdownValues: any[];
+  feed: EmployeeProps[];
 };
 
 // const apiAdress = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employees/addSalary`;

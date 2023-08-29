@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { useEffect, useState } from 'react';
 import {
   CButton,
@@ -15,15 +15,28 @@ import {
   CFormInput,
   CFormSelect,
 } from '@coreui/react-pro';
-import { EmployeeProps } from '../../components/Employees';
+import { EmployeeProps as BaseEmployeeProps } from '../../components/Employees';
 import FormEmployeeSalaries from "./FormEmployeeSalaries";
 import FormEmployeeContract from "./FormEmployeeContract";
+
+export type EmployeeProps = BaseEmployeeProps & {
+  birthDate?: any;
+  email?: string;
+  phoneNumber?: number | string;
+  photo?: {
+    id: number;
+    url: string;
+  };
+};
 
 type Props = {
   feed: EmployeeProps[];
   dropdownValues: any[];
-  apiRoute: String[];
+  apiRoute?: String[];
+
 };
+
+
 
 const updateEmployee = async (item: any, updatedData: any) => {
   try {
@@ -78,6 +91,7 @@ function EmployeeTable(props: Props) {
 
   const toggleEdit = async (itemId: number) => {
     const item = items.find((item) => item.id === itemId);
+    if (!item) return;
     const position = editingRows.indexOf(item.id);
     let newEditingRows = editingRows.slice();
     if (position !== -1) {
@@ -119,7 +133,7 @@ function EmployeeTable(props: Props) {
     item: any,
     field: string
   ) => {
-    let value;
+    let value:any;
 
     if (field === 'phoneNumber') {
       value = parseInt(event.target.value, 10);
@@ -129,7 +143,7 @@ function EmployeeTable(props: Props) {
       value = event.target.value;
     }
 
-    setUpdatedItems((prevItems) => ({
+    setUpdatedItems((prevItems:any) => ({
       ...prevItems,
       [item.id]: {
         ...(prevItems[item.id] || {}),

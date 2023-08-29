@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import React, { useState } from 'react';
 import {
   CCard,
@@ -16,11 +16,15 @@ import {
   CButton,
   CFormFeedback,
 } from "@coreui/react-pro";
+import { EmployeeProps } from './TableEmployees';
 
 type Props = {
   employeeId: number;
   dropdownValues: any[];
+  feed: EmployeeProps[];
 };
+
+
 
 // const ContractValidation =`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employees/ContractValidation`;
 const ContractValidation ="/api/employees/ContractValidation";
@@ -30,7 +34,7 @@ const FormInsertEmployeeData = (props: Props) => {
   const [validated, setValidated] = useState(false);
   const [showEndDate, setShowEndDate] = useState(false);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event:any) => {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {

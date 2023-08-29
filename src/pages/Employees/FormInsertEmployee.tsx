@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import {
   CCard,
   CCardBody,
@@ -24,7 +24,7 @@ import { EmployeeProps } from "@/components/Employees";
 type Props = {
   feed: EmployeeProps[];
   dropdownValues: any[];
-  apiRoute: String[];
+  apiRoute?: String[];
 };
 
 // const apiEmployee = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employees/addEmployee`;
@@ -40,7 +40,7 @@ const FormInsertEmployee = (props: Props) => {
   const [showValidation, setShowValidation] = useState(true);
   const [submitAttempted, setSubmitAttempted] = useState(false);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event:any) => {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
