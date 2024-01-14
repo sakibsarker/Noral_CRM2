@@ -1,32 +1,3 @@
-
-![screencapture-noral-crm-2-vercel-app-Employees-2023-08-29-02_30_15](https://github.com/sakibsarker/Noral_CRM2/assets/95316668/1476b3d3-5307-4c06-b8c7-5e4797c47983)
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `src/pages/index.tsx`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [CoreUI for React Documentation](https://coreui.io/react/docs) - learn about Next.js features and API.
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![erpapplication](https://github.com/sakibsarker/Noral_CRM2/assets/95316668/4bc9784d-5737-4414-89c7-13795b5fc467)
+![screencapture-erpnolara-vercel-app-employee-2023-09-10-23_34_31](https://github.com/sakibsarker/Noral_CRM2/assets/95316668/2b4770a1-169e-4f51-8bf8-0abc020b1c87)
+![screencapture-localhost-3000-employee-2023-09-11-11_46_06](https://github.com/sakibsarker/Noral_CRM2/assets/95316668/19671259-14f7-43f1-901f-b9e4e08427d2)
